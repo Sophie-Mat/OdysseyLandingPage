@@ -21,9 +21,9 @@ function App() {
           <div className="flex md:w-1/2 items-center justify-center">
             <p className="text-white">
               Your paragraph text goes here. It will take half the screen width on medium and larger screens, and the full width on small screens.
-              Tailwind is an increasingly popular and widely used framework, which makes it easier in some cases to build and ship features and products. In this guide, we'll be covering how you can vertically and horizontally center an element or text with tailwind.
+              Tailwind is an increasingly popular and widely used framework, which makes it easier in some cases to build and ship features and products. In this guide, we&amp;apos ll be covering how you can vertically and horizontally center an element or text with tailwind.
       
-              In another article, I've already covered how to center an HTML element both horizontally and vertically using CSS. If you want to learn about that, click here.
+              In another article, I&amp;apos ve already covered how to center an HTML element both horizontally and vertically using CSS. If you want to learn about that, click here.
             </p>
           </div>
 
