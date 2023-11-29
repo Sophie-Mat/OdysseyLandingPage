@@ -11,6 +11,7 @@ export default {
       },
       colors: {
         'regal-blue': '#007dbe',
+        'light-odi-blue':'#55b4e6'
       },
       shapeOutside: {
         wave: 'polygon(0 0, 0 10%, 70% 30%, 100% 0, 0 0)',
