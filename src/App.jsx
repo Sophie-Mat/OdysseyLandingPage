@@ -1,6 +1,5 @@
 import backgroundLogo from './assets/map.png'
 import nileLogo from './assets/nile_logo.png'
-import card1 from './assets/card1.png'
 import trireme from './assets/trireme.png'
 import './App.css'
 
