@@ -9,8 +9,8 @@ function App() {
   };
   
   return (
-    <div className="w-screen md:h-screen bg-regal-blue flex flex-col items-center justify-center relative overfloww-y-auto overflow-x-hidden">
-      <div className="flex font-luckiest-guy mt-20">
+    <div className="w-screen md:h-screen bg-regal-blue flex flex-col items-center justify-start relative overfloww-y-auto overflow-x-hidden">
+      <div className="flex font-luckiest-guy mt-10">
         <text className="fill-white text-3xl text-white tracking-wider font-bold md:text-6xl lg:text-8xl shape-wave [text-shadow:_0_5px_0_rgb(0_0_0_/_40%)]"
                 x="0" y="150">
             Παίζουμε Οδύσσεια;
@@ -19,7 +19,7 @@ function App() {
       
       
       {/*md:pl-20*/}
-      <div className="w-full flex-1 mt-10 md:mt-40 mb-8 px-2 md:px-20 md:mb-0">
+      <div className="w-full flex-1 mt-10 md:mt-20 mb-8 px-2 md:px-20 md:mb-0">
         <div className="flex flex-col md:flex-row space-y-4 ">
           <div className="flex md:w-1/2 items-center justify-center">
             <p className="text-white font-semibold text-xl text-center md:text-justify">
