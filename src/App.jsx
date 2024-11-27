@@ -1,5 +1,6 @@
 import backgroundLogo from './assets/map.png'
-import nileLogo from './assets/nile_logo.png'
+import nileLogo from './assets/nile_logo_ship.png'
+import creatorsLogo from './assets/icon_creators_ship.png'
 import trireme from './assets/trireme.png'
 import './App.css'
 
@@ -81,42 +82,30 @@ function App() {
       </div>
 
       <div className="flex flex-col md:flex-row w-full bg-regal-blue md:px-20 md:right-0 items-center justify-center">
-        <div className="flex w-1/2 flex-col md:flex-row space-y-3 md:space-y-0 items-top justify-center md:justify-around px-4">
+      <div className="flex w-full md:w-1/2 flex-row items-center justify-around px-4 space-x-3">
+  {/* Button 1 */}
+  <button className="group flex flex-col w-44 h-32 rounded-lg bg-[#99d2f0]/50 backdrop-blur-md 
+                    items-center justify-center shadow-[3px_3px_7px_rgba(0,70,100,0.7)] 
+                    transform hover:scale-105 hover:shadow-lg transition-all duration-300">
+    <img className="w-12 h-auto -scale-x-100" src={trireme} alt="Logo" />
+    <span className="italic font-normal text-xl sm:text-2xl text-white 
+                    opacity-80 group-hover:opacity-100 px-1 text-center">
+      Οδηγίες Χρήσης
+    </span>
+  </button>
 
-          {/* <div className="flex flex-col w-1/3 rounded-lg bg-[#99d2f0] items-center shadow-[3px_3px_7px_rgba(0,70,100,0.7)]">
-            <img className="w-3/12 md:w-2/6 h-auto -scale-x-100" src={trireme} alt="Logo" />
-            <button className="bg-opacity-0 bg-gray-300 text-orange-800 font-bold py-2 px-4
-                  rounded-full inline-flex items-center justify-center">
-              <span className="italic font-normal text-4xl md:text-5xl text-regal-blue hover:text-orange-200 px-1">Οδηγίες Χρήσης</span>
-            </button>
-          </div> */}
-          {/* <div className="flex flex-col w-1/3 rounded-lg bg-[#99d2f0] items-center shadow-[3px_3px_7px_rgba(0,70,100,0.7)]">
-            <img className="w-3/12 md:w-2/6 h-auto" src={trireme} alt="Logo" />
-            <button className="bg-opacity-0 bg-gray-300 text-orange-800 font-bold py-2 px-4
-                rounded-full inline-flex items-center justify-center">
-              <span className="italic font-normal text-4xl md:text-5xl text-regal-blue hover:text-orange-200  px-1">Απαντήσεις</span>
-            </button>
-          </div> */}
-           <button className="group flex flex-col w-1/3 rounded-lg bg-[#99d2f0]/50 backdrop-blur-md inline-flex items-center 
-           justify-center shadow-[3px_3px_7px_rgba(0,70,100,0.7)] transform py-4 px-4
-           hover:scale-105 hover:shadow-lg transition-all duration-300">
-            <img className="w-3/12 md:w-2/6 h-auto -scale-x-100" src={trireme} alt="Logo" />
-            {/* <button className="bg-opacity-0 bg-gray-300 text-orange-800 font-bold py-2 px-4
-        rounded-full inline-flex items-center justify-center"> */}
-              <span className="italic font-normal text-4xl md:text-5xl text-white hover:text-orange-200 
-              opacity-80 hover:opacity-100 px-1 px-1">Οδηγίες Χρήσης</span>
-            {/* </button> */}
-          </button>
-          <button className="group flex flex-col w-1/3 rounded-lg bg-[#99d2f0]/50 backdrop-blur-md inline-flex items-center 
-          justify-center shadow-[3px_3px_7px_rgba(0,70,100,0.7)] transform py-4 px-4
-          hover:scale-105 hover:shadow-lg transition-all duration-300">
-            <img className="w-3/12 md:w-2/6 h-auto" src={trireme} alt="Logo" />
-            <span className="italic font-normal text-4xl md:text-5xl text-white 
-          opacity-80 group-hover:opacity-100 px-1">
-              Απαντήσεις
-            </span>
-          </button>
-        </div>
+  {/* Button 2 */}
+  <button className="group flex flex-col w-44 h-32 rounded-lg bg-[#99d2f0]/50 backdrop-blur-md 
+                    items-center justify-center shadow-[3px_3px_7px_rgba(0,70,100,0.7)] 
+                    transform hover:scale-105 hover:shadow-lg transition-all duration-300">
+    <img className="w-12 h-auto" src={trireme} alt="Logo" />
+    <span className="italic font-normal text-xl sm:text-2xl text-white 
+                    opacity-80 group-hover:opacity-100 px-1 text-center">
+      Απαντήσεις
+    </span>
+  </button>
+</div>
+
 
         <div className="flex w-1/2 justify-around">
           {/*md:w-2/5*/}
@@ -124,10 +113,12 @@ function App() {
         </div>
       </div>
 
-      <div className="bg-gray-100 bg-opacity-100 flex w-full items-center justify-end">
-        <div className="flex items-center justify-center md:justify-end md:mr-32">
-          <span className="fill-white text-1xl text-regal-blue tracking-wider font-bold md:text-1xl lg:text-2xl shape-wave mr-10">Developed By</span>
-          <img className="w-3/12 md:w-1/12 h-auto" src={nileLogo} alt="Logo" />
+      <div className="bg-opacity-100 flex w-full items-center justify-end">
+        <div className="flex items-center justify-center md:justify-end md:mr-20">
+        {/* <span className="fill-white text-1xl text-regal-blue tracking-wider font-bold md:text-1xl lg:text-2xl shape-wave mr-10">Created By</span>
+        <img className="w-3/12 md:w-1/12 h-auto" src={creatorsLogo} alt="Logo" /> */}
+          <span className="text-1xl text-white tracking-wider font-bold md:text-1xl lg:text-2xl shape-wave mr-10">Developed By</span>
+          <img className="w-2/12 md:w-2/12 h-auto" src={nileLogo} alt="Logo" />
         </div>
       </div>
 
