@@ -1,42 +1,57 @@
 import backgroundLogo from "./assets/map.png";
 import nileLogo from "./assets/nile_logo_ship.png";
-import creatorsLogo from "./assets/icon_creators_ship.png";
-import trireme from "./assets/trireme.png";
+import greekflag from "./assets/greek_flag.png";
+import ukflag from "./assets/uk_flag.png";
 import instructions from "./assets/instructions.svg";
 import information from "./assets/information.svg";
 import "./App.css";
+
+import { useTranslation } from './TranslationProvder';
 
 function App() {
   const customStyles = {
     transform: "rotateX(65deg) rotateY(0deg) rotateZ(35deg)",
   };
 
-  const handleDownloadClick = () => {
+
+  const { text, language, setLanguage } = useTranslation();
+
+  const languageSelect = () => {
+    if (language === 'el') {
+      setLanguage('en')
+    } else if (language === 'en') {
+      setLanguage('el')
+    }
+    console.log(language)
+  }
+
+
+
+  const handleClick = (url) => {
     window.open(
-      "https://drive.google.com/drive/folders/1Bd9F7EvJIbKBAtdOanEQKf2iCpVTydtS",
+      url,
       "_blank",
       "noopener noreferrer",
     );
   };
 
-  const handleInstructionsClick = () => {
-    window.open(
-      "https://drive.google.com/drive/folders/1ejxyityRFu3wTKnaZ4_k3ZZ-xfeBJxZU",
-      "_blank",
-      "noopener noreferrer",
-    );
-  };
-
-  const handleInformationClick = () => {
-    window.open(
-      "https://drive.google.com/drive/folders/1wGWB6cZ5m1b6Yu-VNsYlqAj6lCJWnrik",
-      "_blank",
-      "noopener noreferrer",
-    );
-  };
 
   return (
     <div className="w-screen md:h-screen bg-regal-blue flex flex-col items-center justify-start relative overfloww-y-auto overflow-x-hidden">
+
+      <div className="w-full flex flex-row items-center justify-end mr-20 mt-10">
+        <p className="mr-2 text-white">English</p>
+        {/* <img src={ukflag} alt="language Flag" className="w-12 flex-shrink-0" /> */}
+        <button
+          type="button"
+          onClick={languageSelect}
+          className="flex items-center justify-center p-2 bg-transparent border-none cursor-pointer focus:outline-none"
+        >
+          <img src={ukflag} alt="Language Flag" className="w-12 flex-shrink-0" />
+        </button>
+      </div>
+
+
       <div className="flex font-luckiest-guy mt-10">
         <p className="text-3xl text-white tracking-wider font-bold md:text-6xl lg:text-8xl flex space-x-1 [text-shadow:_0_5px_0_rgb(0_0_0_/_40%)]">
           <span className="relative top-8">Π</span>
@@ -68,64 +83,75 @@ function App() {
 
       {/*md:pl-20*/}
       <div className="w-full flex-1 mt-10 md:mt-20 mb-8 px-2 md:px-20 md:mb-0">
-        <div className="flex flex-col md:flex-row space-y-4 ">
-          <div className="flex md:w-1/2 items-center justify-center">
-            <div className="flex flex-col">
-              <p className="text-white font-semibold text-xl md:text-lg text-center md:text-justify">
-                Το "Παίζουμε Οδύσσεια" είναι ένα επιτραπέζιο παιχνίδι επανάληψης
-                στην Ομήρου Οδύσσεια σχεδιασμένο για τον εκπαιδευτικό που
-                επιθυμεί μια εναλλακτική διδασκαλία κατά τη συνολική θεώρηση του
-                έπους. Λειτουργεί ως εργαλείο επανάληψης των κύριων διδακτικών
-                στόχων που έθεσε ο εκπαιδευτικός κατά τη διάρκεια της σχολικής
-                χρονιάς και συνδυάζει τη γνώση με την απόλαυση τόσο για τους
-                μαθητές όσο και για τον ίδιο τον εκπαιδευτικό. Το επιτραπέζιο
-                παιχνίδι έχει εγκριθεί από το υπουργείο Παιδείας (ΥΠ.Π.Ε.Θ
-                937/03-01-2018) και το θεωρητικό του πλαίσιο έχει παρουσιαστεί
-                στο 4ο Πανελλήνιο Συνέδριο του Π.Τ.Δ.Ε του Ε.Κ.Π.Α "Ποιότητα
-                στην Εκπαίδευση" το 2012, αφού δοκιμάστηκε στην τάξη από τις
-                εκπαιδευτικούς ΠΕ02 που το σχεδίασαν, Κατερίνα Δαμιανάκη και Ζωή
-                Λέκκα.
-              </p>
+        <div className="flex flex-col md:flex-row items-center md:space-x-8 space-y-6 md:space-y-0">
+          {/* Text Section */}
+          <div className="flex flex-col md:w-3/5 w-full items-center md:items-start">
+            <p className="text-white font-semibold text-lg md:text-xl text-justify leading-relaxed md:leading-normal">
+              {/* Το "Παίζουμε Οδύσσεια" είναι ένα επιτραπέζιο παιχνίδι επανάληψης
+              στην Ομήρου Οδύσσεια σχεδιασμένο για τον εκπαιδευτικό που
+              επιθυμεί μια εναλλακτική διδασκαλία κατά τη συνολική θεώρηση του
+              έπους. Λειτουργεί ως εργαλείο επανάληψης των κύριων διδακτικών
+              στόχων που έθεσε ο εκπαιδευτικός κατά τη διάρκεια της σχολικής
+              χρονιάς και συνδυάζει τη γνώση με την απόλαυση τόσο για τους
+              μαθητές όσο και για τον ίδιο τον εκπαιδευτικό. Το επιτραπέζιο
+              παιχνίδι έχει εγκριθεί από το υπουργείο Παιδείας (ΥΠ.Π.Ε.Θ
+              937/03-01-2018) και το θεωρητικό του πλαίσιο έχει παρουσιαστεί
+              στο 4ο Πανελλήνιο Συνέδριο του Π.Τ.Δ.Ε του Ε.Κ.Π.Α "Ποιότητα
+              στην Εκπαίδευση" το 2012, αφού δοκιμάστηκε στην τάξη από τις
+              εκπαιδευτικούς ΠΕ02 που το σχεδίασαν, Κατερίνα Δαμιανάκη και Ζωή
+              Λέκκα.
+              Στόχος του παιχνιδιού είναι οι μαθητές σε ομάδες και έχοντας στη
+              διάθεσή τους τρεις βοήθειες, να οδηγήσουν τον "Οδυσσέα" τους
+              στην Ιθάκη, αφού περάσουν από δοκιμασίες που στηρίζονται σε
+              γνωστικές ερωτήσεις και δραματοποιήσεις εμπνευσμένες από το
+              περιεχόμενο της Οδύσσειας. Με την ολοκλήρωση των δοκιμασιών οι
+              ομάδες κερδίζουν λάφυρα. Νικήτρια αναδεικνύεται η ομάδα που θα
+              συγκεντρώσει τα περισσότερα λάφυρα και θα οδηγήσει πρώτη τον
+              "Οδυσσέα" της στην Ιθάκη. */}
+              {text('gameDescription')}
+            </p>
 
-              <p className="text-white font-semibold text-xl md:text-lg text-center md:text-justify tabbed indent-8">
-                Στόχος του παιχνιδιού είναι οι μαθητές σε ομάδες και έχοντας στη
-                διάθεσή τους τρεις βοήθειες, να οδηγήσουν τον "Οδυσσέα" τους
-                στην Ιθάκη, αφού περάσουν από δοκιμασίες που στηρίζονται σε
-                γνωστικές ερωτήσεις και δραματοποιήσεις εμπνευσμένες από το
-                περιεχόμενο της Οδύσσειας. Με την ολοκλήρωση των δοκιμασιών οι
-                ομάδες κερδίζουν λάφυρα. Νικήτρια αναδεικνύεται η ομάδα που θα
-                συγκεντρώσει τα περισσότερα λάφυρα και θα οδηγήσει πρώτη τον
-                "Οδυσσέα" της στην Ιθάκη.
-              </p>
-            </div>
+            {/* <p className="text-white font-semibold text-lg md:text-xl text-justify mt-4 md:mt-6 leading-relaxed md:leading-normal">
+              Στόχος του παιχνιδιού είναι οι μαθητές σε ομάδες και έχοντας στη
+              διάθεσή τους τρεις βοήθειες, να οδηγήσουν τον "Οδυσσέα" τους
+              στην Ιθάκη, αφού περάσουν από δοκιμασίες που στηρίζονται σε
+              γνωστικές ερωτήσεις και δραματοποιήσεις εμπνευσμένες από το
+              περιεχόμενο της Οδύσσειας. Με την ολοκλήρωση των δοκιμασιών οι
+              ομάδες κερδίζουν λάφυρα. Νικήτρια αναδεικνύεται η ομάδα που θα
+              συγκεντρώσει τα περισσότερα λάφυρα και θα οδηγήσει πρώτη τον
+              "Οδυσσέα" της στην Ιθάκη.
+            </p> */}
           </div>
 
-          <div className="flex md:w-1/2 items-center justify-end">
+          {/* Button Section */}
+          <div className="flex md:w-3/5 w-full items-center justify-center">
             <button
-              onClick={handleDownloadClick}
-              className="bg-orange-400 hover:bg-orange-100 text-white hover:text-regal-blue font-bold py-6 px-12 
-            rounded inline-flex items-center justify-center shadow-[3px_3px_7px_rgba(0,70,100,0.7)]"
+              onClick={() => handleClick(text('downloadLink'))}
+              className="bg-orange-400 hover:bg-orange-100 text-white hover:text-regal-blue font-bold py-4 px-6 md:py-6 md:px-12 rounded 
+        inline-flex items-center justify-center shadow-[3px_3px_7px_rgba(0,70,100,0.7)] transition-all duration-200 ease-in-out"
             >
               <svg
-                className="fill-current w-16 h-16"
+                className="fill-current w-10 h-10 md:w-16 md:h-16"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
               >
                 <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
               </svg>
-              <span className="font-bold text-4xl md:text-6xl md:px-12 py-1 md:py-5">
-                Download
+              <span className="font-bold text-2xl md:text-4xl ml-4">
+                {text('downloadButtonText')}
               </span>
             </button>
           </div>
         </div>
       </div>
 
+
+
       <div className="flex flex-col md:flex-row w-full bg-regal-blue md:px-20 md:right-0 items-center justify-center">
         <div className="flex w-full md:w-1/2 flex-row items-center justify-around px-4 space-x-3">
           {/* Button 1 */}
           <button
-            onClick={handleInstructionsClick}
+            onClick={() => handleClick(text('instructionsLink'))}
             className="group flex flex-col w-44 h-32 rounded-lg bg-[#99d2f0]/50 backdrop-blur-md 
                     items-center justify-center shadow-[3px_3px_7px_rgba(0,70,100,0.7)] 
                     transform hover:scale-105 hover:shadow-lg transition-all duration-300"
@@ -136,13 +162,13 @@ function App() {
               className="italic font-normal text-xl sm:text-2xl text-white 
                     opacity-80 group-hover:opacity-100 px-1 text-center"
             >
-              Οδηγίες Χρήσης
+              {text('instructionsButtonText')}
             </span>
           </button>
 
           {/* Button 2 */}
           <button
-            onClick={handleInformationClick}
+            onClick={() => handleClick(text('answersLink'))}
             className="group flex flex-col w-44 h-32 rounded-lg bg-[#99d2f0]/50 backdrop-blur-md 
                     items-center justify-center shadow-[3px_3px_7px_rgba(0,70,100,0.7)] 
                     transform hover:scale-105 hover:shadow-lg transition-all duration-300"
@@ -152,7 +178,7 @@ function App() {
               className="italic font-normal text-xl sm:text-2xl text-white 
                     opacity-80 group-hover:opacity-100 px-1 text-center"
             >
-              Απαντήσεις
+              {text('answersButtonText')}
             </span>
           </button>
         </div>
@@ -168,11 +194,11 @@ function App() {
         </div>
       </div>
 
-      <div className="bg-opacity-100 flex w-full items-center justify-end">
+      <div className="bg-opacity-100 flex w-full items-center justify-end py-5">
         <div className="flex items-center justify-center md:justify-end md:mr-20">
           {/* <span className="fill-white text-1xl text-regal-blue tracking-wider font-bold md:text-1xl lg:text-2xl shape-wave mr-10">Created By</span>
         <img className="w-3/12 md:w-1/12 h-auto" src={creatorsLogo} alt="Logo" /> */}
-          <span className="text-1xl text-white tracking-wider font-bold md:text-1xl lg:text-2xl shape-wave mr-10">
+          <span className="text-1xl text-white tracking-wider font-bold md:text-1xl lg:text-2xl shape-wave mr-40">
             Developed By
           </span>
           <img className="w-2/12 md:w-2/12 h-auto" src={nileLogo} alt="Logo" />
