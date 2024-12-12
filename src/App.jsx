@@ -40,14 +40,14 @@ function App() {
     <div className="w-screen md:h-screen bg-regal-blue flex flex-col items-center justify-start relative overfloww-y-auto overflow-x-hidden">
 
       <div className="w-full flex flex-row items-center justify-end mr-20 mt-10">
-        <p className="mr-2 text-white">English</p>
+        <p className="mr-2 text-white">{text('languageText')}</p>
         {/* <img src={ukflag} alt="language Flag" className="w-12 flex-shrink-0" /> */}
         <button
           type="button"
           onClick={languageSelect}
           className="flex items-center justify-center p-2 bg-transparent border-none cursor-pointer focus:outline-none"
         >
-          <img src={ukflag} alt="Language Flag" className="w-12 flex-shrink-0" />
+          <img src={language=="en"? ukflag : greekflag} alt="Language Flag" className="w-12 flex-shrink-0" />
         </button>
       </div>
 
