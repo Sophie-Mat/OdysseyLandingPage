@@ -4,6 +4,7 @@ import greekflag from "./assets/greek_flag.png";
 import ukflag from "./assets/uk_flag.png";
 import instructions from "./assets/instructions.svg";
 import information from "./assets/information.svg";
+// import downloadGame from './assets/letsPlayOdyssey.zip';
 import "./App.css";
 
 import { useTranslation } from './TranslationProvder';
@@ -25,14 +26,21 @@ function App() {
     console.log(language)
   }
 
-
-
   const handleClick = (url) => {
     window.open(
       url,
       "_blank",
       "noopener noreferrer",
     );
+  };
+
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    link.href = "/letsPlayOdyssey.zip"; // Resolved path from the import.
+    link.download = "letsPlayOdyssey.zip"; // Optional: Rename the file during download.
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
 
@@ -126,7 +134,8 @@ function App() {
           {/* Button Section */}
           <div className="flex md:w-3/5 w-full items-center justify-center">
             <button
-              onClick={() => handleClick(text('downloadLink'))}
+              // onClick={() => handleClick(text('downloadLink'))}
+              onClick={handleDownload}
               className="bg-orange-400 hover:bg-orange-100 text-white hover:text-regal-blue font-bold py-4 px-6 md:py-6 md:px-12 rounded 
         inline-flex items-center justify-center shadow-[3px_3px_7px_rgba(0,70,100,0.7)] transition-all duration-200 ease-in-out"
             >
