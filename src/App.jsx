@@ -28,7 +28,7 @@ function App() {
 
   const handleClick = (url) => {
     window.open(
-      url,
+      `/${url}`,
       "_blank",
       "noopener noreferrer",
     );
@@ -203,14 +203,19 @@ function App() {
         </div>
       </div>
 
-      <div className="bg-opacity-100 flex w-full items-center justify-end py-5">
-        <div className="flex items-center justify-center md:justify-end md:mr-20">
+      <div className="bg-opacity-100 flex w-full items-center justify-center py-5">
+        <div className="flex items-center justify-center md:mr-20"> 
+        {/* md:justify-end  */}
           {/* <span className="fill-white text-1xl text-regal-blue tracking-wider font-bold md:text-1xl lg:text-2xl shape-wave mr-10">Created By</span>
         <img className="w-3/12 md:w-1/12 h-auto" src={creatorsLogo} alt="Logo" /> */}
-          <span className="text-1xl text-white tracking-wider font-bold md:text-1xl lg:text-2xl shape-wave mr-40">
+          {/* <span className="text-1xl text-white tracking-wider font-bold md:text-1xl lg:text-2xl shape-wave mr-40">
             Developed By
           </span>
-          <img className="w-2/12 md:w-2/12 h-auto" src={nileLogo} alt="Logo" />
+          <img className="w-2/12 md:w-2/12 h-auto" src={nileLogo} alt="Logo" /> */}
+          <span className="text-white text-1xl tracking-wider font-bold md:text-1xl">
+          Copyright © 2025  Hellenic Mediterranean University, Katerina Damianaki, Zoi Lekka All rights reserved
+          <br/>NILE Lab unit of AISE Lab
+          </span>
         </div>
       </div>
     </div>
