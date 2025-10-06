@@ -103,12 +103,12 @@ function App() {
           </div>
 
           {/* Button Section */}
-          <div className="flex md:w-3/5 w-full items-center justify-center">
+          <div className="flex flex-col md:w-3/5 w-full items-center justify-center">
             <button
               // onClick={() => handleClick(text('downloadLink'))}
               onClick={handleDownload}
               className="bg-orange-400 hover:bg-orange-100 text-white hover:text-regal-blue font-bold py-4 px-6 md:py-6 md:px-12 rounded 
-        inline-flex items-center justify-center shadow-[3px_3px_7px_rgba(0,70,100,0.7)] transition-all duration-200 ease-in-out"
+              inline-flex items-center justify-center shadow-[3px_3px_7px_rgba(0,70,100,0.7)] transition-all duration-200 ease-in-out"
             >
               <svg
                 className="fill-current w-10 h-10 md:w-16 md:h-16"
@@ -121,6 +121,21 @@ function App() {
                 {text('downloadButtonText')}
               </span>
             </button>
+            {/* Installation Guide */}
+            {text('instalationGuide') !== "NULL" && (
+              <button
+                className="mt-4 bg-orange-400 hover:bg-orange-100 text-white hover:text-regal-blue font-semibold py-2 px-4 rounded shadow transition-all duration-200 outline-none border-none"
+                onClick={() => {
+                  setModalMenu(null);
+                  setModalTitle(text('installationText'));
+                  setPdfUrl(text('instalationGuide'));
+                  setModalOpen(true);
+                }}
+                style={{ boxShadow: "none" }}
+              >
+                {text('installationText')}
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -161,15 +176,8 @@ function App() {
                   <button
                     className="bg-blue-200 hover:bg-blue-300 text-black font-bold py-2 px-4 rounded"
                     onClick={() => setPdfUrl(text('instructionsHighLink'))}
-                    disabled={language === 'en'}
                   >
                     {text('instructionsHighText')}
-                  </button>
-                  <button
-                    className="bg-blue-200 hover:bg-blue-300 text-black font-bold py-2 px-4 rounded"
-                    onClick={() => setPdfUrl(text('instalationGuide'))}
-                  >
-                    {text('installationText')}
                   </button>
                 </div>
               )}
@@ -184,7 +192,6 @@ function App() {
                   <button
                     className="bg-green-200 hover:bg-green-300 text-black font-bold py-2 px-4 rounded"
                     onClick={() => setPdfUrl(text('answersHighLink'))}
-                    disabled={language === 'en'}
                   >
                     {text('answersHighText')}
                   </button>
