@@ -30,6 +30,7 @@ function App() {
   const [modalOpen, setModalOpen] = useState(false);
   const [pdfUrl, setPdfUrl] = useState("");
   const [modalTitle, setModalTitle] = useState("");
+  const [modalMenu, setModalMenu] = useState(null); // null, 'instructions', or 'answers'
 
   const handleClick = (url) => {
       setPdfUrl(`/${url}`);
@@ -161,7 +162,7 @@ function App() {
           {/* Button 1 */}
           <button
           onClick={() => {
-            handleClick(text('instructionsLink'));
+            handleClick(text('instructionsPrimaryLink'));
             setModalTitle(text('instructionsButtonText'))
           }}
           className="group flex flex-col w-44 h-32 rounded-lg bg-[#99d2f0]/50 backdrop-blur-md 
@@ -180,7 +181,7 @@ function App() {
           {/* Button 2 */}
           <button
             onClick={() => {
-              handleClick(text('answersLink'));
+              handleClick(text('answersPrimaryLink'));
               setModalTitle(text('answersButtonText'));
             }}
             className="group flex flex-col w-44 h-32 rounded-lg bg-[#99d2f0]/50 backdrop-blur-md 
