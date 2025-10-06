@@ -28,14 +28,14 @@ function App() {
   }
 
   const [modalOpen, setModalOpen] = useState(false);
-  const [pdfUrl, setPdfUrl] = useState("");
   const [modalTitle, setModalTitle] = useState("");
   const [modalMenu, setModalMenu] = useState(null); // null, 'instructions', or 'answers'
+  const [pdfUrl, setPdfUrl] = useState("");
 
-  const handleClick = (url) => {
+  /*const handleClick = (url) => {
       setPdfUrl(`/${url}`);
       setModalOpen(true);
-  };
+  };*/
 
   const handleDownload = () => {
     const link = document.createElement('a');
@@ -149,11 +149,63 @@ function App() {
                 &times;
               </button>
               </div>
-              <iframe
-                src={pdfUrl}
-                title="PDF Viewer"
-                className="flex-1 w-full h-full"
-              />
+              {/* Modal Content */}
+              {modalMenu === 'instructions' && !pdfUrl && (
+                <div className="flex flex-col space-y-4">
+                  <button
+                    className="bg-blue-200 hover:bg-blue-300 text-black font-bold py-2 px-4 rounded"
+                    onClick={() => setPdfUrl(text('instructionsPrimaryLink'))}
+                  >
+                    {text('instructionsPrimaryText')}
+                  </button>
+                  <button
+                    className="bg-blue-200 hover:bg-blue-300 text-black font-bold py-2 px-4 rounded"
+                    onClick={() => setPdfUrl(text('instructionsHighLink'))}
+                    disabled={language === 'en'}
+                  >
+                    {text('instructionsHighText')}
+                  </button>
+                  <button
+                    className="bg-blue-200 hover:bg-blue-300 text-black font-bold py-2 px-4 rounded"
+                    onClick={() => setPdfUrl(text('instalationGuide'))}
+                  >
+                    {text('installationText')}
+                  </button>
+                </div>
+              )}
+              {modalMenu === 'answers' && !pdfUrl && (
+                <div className="flex flex-col space-y-4">
+                  <button
+                    className="bg-green-200 hover:bg-green-300 text-black font-bold py-2 px-4 rounded"
+                    onClick={() => setPdfUrl(text('answersPrimaryLink'))}
+                  >
+                    {text('answersPrimaryText')}
+                  </button>
+                  <button
+                    className="bg-green-200 hover:bg-green-300 text-black font-bold py-2 px-4 rounded"
+                    onClick={() => setPdfUrl(text('answersHighLink'))}
+                    disabled={language === 'en'}
+                  >
+                    {text('answersHighText')}
+                  </button>
+                </div>
+              )}
+              {pdfUrl && (
+                <iframe
+                  src={pdfUrl}
+                  title="PDF Viewer"
+                  className="flex-1 w-full h-full"
+                />
+              )}
+              {/* Back button if viewing PDF */}
+              {pdfUrl && (
+                <button
+                  className="mt-4 bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded"
+                  onClick={() => setPdfUrl("")}
+                >
+                  {text('backButtonText')}
+                </button>
+              )}
             </div>
           </div>
         )}
@@ -162,8 +214,11 @@ function App() {
           {/* Button 1 */}
           <button
           onClick={() => {
-            handleClick(text('instructionsPrimaryLink'));
-            setModalTitle(text('instructionsButtonText'))
+            //handleClick(text('instructionsPrimaryLink'));
+            setModalMenu('instructions');
+            setModalTitle(text('instructionsButtonText'));
+            setPdfUrl("");
+            setModalOpen(true);
           }}
           className="group flex flex-col w-44 h-32 rounded-lg bg-[#99d2f0]/50 backdrop-blur-md 
                     items-center justify-center shadow-[3px_3px_7px_rgba(0,70,100,0.7)] 
@@ -181,8 +236,11 @@ function App() {
           {/* Button 2 */}
           <button
             onClick={() => {
-              handleClick(text('answersPrimaryLink'));
+              //handleClick(text('answersPrimaryLink'));
+              setModalMenu('answers');
               setModalTitle(text('answersButtonText'));
+              setPdfUrl("");
+              setModalOpen(true);
             }}
             className="group flex flex-col w-44 h-32 rounded-lg bg-[#99d2f0]/50 backdrop-blur-md 
                     items-center justify-center shadow-[3px_3px_7px_rgba(0,70,100,0.7)] 
