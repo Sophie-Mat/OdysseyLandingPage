@@ -6,6 +6,7 @@ import instructions from "./assets/instructions.svg";
 import information from "./assets/information.svg";
 // import downloadGame from './assets/letsPlayOdyssey.zip';
 import "./App.css";
+import { useState } from "react";
 
 import { useTranslation } from './TranslationProvder';
 
@@ -26,12 +27,13 @@ function App() {
     console.log(language)
   }
 
+  const [modalOpen, setModalOpen] = useState(false);
+  const [pdfUrl, setPdfUrl] = useState("");
+  const [modalTitle, setModalTitle] = useState("");
+
   const handleClick = (url) => {
-    window.open(
-      `/${url}`,
-      "_blank",
-      "noopener noreferrer",
-    );
+      setPdfUrl(`/${url}`);
+      setModalOpen(true);
   };
 
   const handleDownload = () => {
@@ -95,40 +97,8 @@ function App() {
           {/* Text Section */}
           <div className="flex flex-col md:w-3/5 w-full items-center md:items-start">
             <p className="text-white font-semibold text-lg md:text-xl text-justify leading-relaxed md:leading-normal">
-              {/* Το "Παίζουμε Οδύσσεια" είναι ένα επιτραπέζιο παιχνίδι επανάληψης
-              στην Ομήρου Οδύσσεια σχεδιασμένο για τον εκπαιδευτικό που
-              επιθυμεί μια εναλλακτική διδασκαλία κατά τη συνολική θεώρηση του
-              έπους. Λειτουργεί ως εργαλείο επανάληψης των κύριων διδακτικών
-              στόχων που έθεσε ο εκπαιδευτικός κατά τη διάρκεια της σχολικής
-              χρονιάς και συνδυάζει τη γνώση με την απόλαυση τόσο για τους
-              μαθητές όσο και για τον ίδιο τον εκπαιδευτικό. Το επιτραπέζιο
-              παιχνίδι έχει εγκριθεί από το υπουργείο Παιδείας (ΥΠ.Π.Ε.Θ
-              937/03-01-2018) και το θεωρητικό του πλαίσιο έχει παρουσιαστεί
-              στο 4ο Πανελλήνιο Συνέδριο του Π.Τ.Δ.Ε του Ε.Κ.Π.Α "Ποιότητα
-              στην Εκπαίδευση" το 2012, αφού δοκιμάστηκε στην τάξη από τις
-              εκπαιδευτικούς ΠΕ02 που το σχεδίασαν, Κατερίνα Δαμιανάκη και Ζωή
-              Λέκκα.
-              Στόχος του παιχνιδιού είναι οι μαθητές σε ομάδες και έχοντας στη
-              διάθεσή τους τρεις βοήθειες, να οδηγήσουν τον "Οδυσσέα" τους
-              στην Ιθάκη, αφού περάσουν από δοκιμασίες που στηρίζονται σε
-              γνωστικές ερωτήσεις και δραματοποιήσεις εμπνευσμένες από το
-              περιεχόμενο της Οδύσσειας. Με την ολοκλήρωση των δοκιμασιών οι
-              ομάδες κερδίζουν λάφυρα. Νικήτρια αναδεικνύεται η ομάδα που θα
-              συγκεντρώσει τα περισσότερα λάφυρα και θα οδηγήσει πρώτη τον
-              "Οδυσσέα" της στην Ιθάκη. */}
               {text('gameDescription')}
             </p>
-
-            {/* <p className="text-white font-semibold text-lg md:text-xl text-justify mt-4 md:mt-6 leading-relaxed md:leading-normal">
-              Στόχος του παιχνιδιού είναι οι μαθητές σε ομάδες και έχοντας στη
-              διάθεσή τους τρεις βοήθειες, να οδηγήσουν τον "Οδυσσέα" τους
-              στην Ιθάκη, αφού περάσουν από δοκιμασίες που στηρίζονται σε
-              γνωστικές ερωτήσεις και δραματοποιήσεις εμπνευσμένες από το
-              περιεχόμενο της Οδύσσειας. Με την ολοκλήρωση των δοκιμασιών οι
-              ομάδες κερδίζουν λάφυρα. Νικήτρια αναδεικνύεται η ομάδα που θα
-              συγκεντρώσει τα περισσότερα λάφυρα και θα οδηγήσει πρώτη τον
-              "Οδυσσέα" της στην Ιθάκη.
-            </p> */}
           </div>
 
           {/* Button Section */}
@@ -157,27 +127,62 @@ function App() {
 
 
       <div className="flex flex-col md:flex-row w-full bg-regal-blue md:px-20 md:right-0 items-center justify-center">
+        
+        {/* Modal for PDF */}
+        {modalOpen && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60"
+            onClick={() => setModalOpen(false)}
+          >
+            <div
+              className="bg-white rounded-lg shadow-lg p-4 max-w-3xl w-full h-[80vh] flex flex-col relative"
+              onClick={e => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-xl font-semibold text-black">{modalTitle}</h2>
+                <button
+                className="absolute top-3 right-5 text-black text-2xl font-bold"
+                onClick={() => setModalOpen(false)}
+                aria-label="Close"
+              >
+                &times;
+              </button>
+              </div>
+              <iframe
+                src={pdfUrl}
+                title="PDF Viewer"
+                className="flex-1 w-full h-full"
+              />
+            </div>
+          </div>
+        )}
+
         <div className="flex w-full md:w-1/2 flex-row items-center justify-around px-4 space-x-3">
           {/* Button 1 */}
           <button
-            onClick={() => handleClick(text('instructionsLink'))}
-            className="group flex flex-col w-44 h-32 rounded-lg bg-[#99d2f0]/50 backdrop-blur-md 
+          onClick={() => {
+            handleClick(text('instructionsLink'));
+            setModalTitle(text('instructionsButtonText'))
+          }}
+          className="group flex flex-col w-44 h-32 rounded-lg bg-[#99d2f0]/50 backdrop-blur-md 
                     items-center justify-center shadow-[3px_3px_7px_rgba(0,70,100,0.7)] 
                     transform hover:scale-105 hover:shadow-lg transition-all duration-300"
           >
-            <img className="w-12 h-auto" src={instructions} alt="Logo" />
-            {/* -scale-x-100 */}
-            <span
-              className="italic font-normal text-xl sm:text-2xl text-white 
+          <img className="w-12 h-auto" src={instructions} alt="Logo" />
+          <span
+            className="italic font-normal text-xl sm:text-2xl text-white 
                     opacity-80 group-hover:opacity-100 px-1 text-center"
-            >
-              {text('instructionsButtonText')}
-            </span>
+          >
+            {text('instructionsButtonText')}
+          </span>
           </button>
 
           {/* Button 2 */}
           <button
-            onClick={() => handleClick(text('answersLink'))}
+            onClick={() => {
+              handleClick(text('answersLink'));
+              setModalTitle(text('answersButtonText'));
+            }}
             className="group flex flex-col w-44 h-32 rounded-lg bg-[#99d2f0]/50 backdrop-blur-md 
                     items-center justify-center shadow-[3px_3px_7px_rgba(0,70,100,0.7)] 
                     transform hover:scale-105 hover:shadow-lg transition-all duration-300"
