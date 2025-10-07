@@ -12,7 +12,11 @@ import { useTranslation } from './TranslationProvder';
 
 function App() {
   const customStyles = {
-    transform: "rotateX(65deg) rotateY(0deg) rotateZ(35deg)",
+    //transform: "rotateX(65deg) rotateY(0deg) rotateZ(35deg) ",
+    //transform: "rotateX(65deg) rotateY(0deg) rotateZ(25deg)",
+    transform: "rotateX(55deg) rotateY(0deg) rotateZ(18deg) scale(1.08) ",
+    boxShadow: "10px 10px 20px rgba(0, 0, 0, 0.5)",
+
   };
 
 
@@ -28,14 +32,14 @@ function App() {
   }
 
   const [modalOpen, setModalOpen] = useState(false);
-  const [pdfUrl, setPdfUrl] = useState("");
   const [modalTitle, setModalTitle] = useState("");
   const [modalMenu, setModalMenu] = useState(null); // null, 'instructions', or 'answers'
+  const [pdfUrl, setPdfUrl] = useState("");
 
-  const handleClick = (url) => {
+  /*const handleClick = (url) => {
       setPdfUrl(`/${url}`);
       setModalOpen(true);
-  };
+  };*/
 
   const handleDownload = () => {
     const link = document.createElement('a');
@@ -58,7 +62,7 @@ function App() {
           onClick={languageSelect}
           className="flex items-center justify-center p-2 bg-transparent border-none cursor-pointer focus:outline-none"
         >
-          <img src={language=="en"? ukflag : greekflag} alt="Language Flag" className="w-12 flex-shrink-0" />
+          <img src={language=="en"? greekflag : ukflag} alt="Language Flag" className="w-12 flex-shrink-0" />
         </button>
       </div>
 
@@ -103,12 +107,12 @@ function App() {
           </div>
 
           {/* Button Section */}
-          <div className="flex md:w-3/5 w-full items-center justify-center">
+          <div className="flex flex-col md:w-3/5 w-full items-center justify-center">
             <button
               // onClick={() => handleClick(text('downloadLink'))}
               onClick={handleDownload}
-              className="bg-orange-400 hover:bg-orange-100 text-white hover:text-regal-blue font-bold py-4 px-6 md:py-6 md:px-12 rounded 
-        inline-flex items-center justify-center shadow-[3px_3px_7px_rgba(0,70,100,0.7)] transition-all duration-200 ease-in-out"
+              className="bg-[#cb6d39] hover:bg-[#d17d50] text-white font-bold py-4 px-6 md:py-6 md:px-12 rounded 
+              inline-flex items-center justify-center shadow-[3px_3px_7px_rgba(0,70,100,0.7)] transition-all duration-200 ease-in-out"
             >
               <svg
                 className="fill-current w-10 h-10 md:w-16 md:h-16"
@@ -121,6 +125,21 @@ function App() {
                 {text('downloadButtonText')}
               </span>
             </button>
+            {/* Installation Guide */}
+            {text('instalationGuide') !== "NULL" && (
+              <button
+                className="mt-2  hover:underline text-white italic font-semibold py-2 px-4 rounded shadow transition-all duration-200 outline-none border-none"
+                onClick={() => {
+                  setModalMenu(null);
+                  setModalTitle(text('installationText'));
+                  setPdfUrl(text('instalationGuide'));
+                  setModalOpen(true);
+                }}
+                style={{ boxShadow: "none" }}
+              >
+                {text('installationText')}
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -136,24 +155,78 @@ function App() {
             onClick={() => setModalOpen(false)}
           >
             <div
-              className="bg-white rounded-lg shadow-lg p-4 max-w-3xl w-full h-[80vh] flex flex-col relative"
+              className={`bg-[#99d2f0] rounded-lg shadow-lg p-4 flex flex-col relative transition-all duration-300
+                ${pdfUrl
+                  ? "max-w-3xl w-full h-[80vh]" // Large modal for PDF
+                  : "max-w-sm w-full h-auto"}   // Small modal for menu
+              `}
               onClick={e => e.stopPropagation()}
             >
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-semibold text-black">{modalTitle}</h2>
+                <h2 className="text-xl font-bold text-[#003d5e]">{modalTitle}</h2>
                 <button
-                className="absolute top-3 right-5 text-black text-2xl font-bold"
-                onClick={() => setModalOpen(false)}
-                aria-label="Close"
-              >
-                &times;
-              </button>
+                  className="absolute top-3 right-5 text-black text-2xl font-bold"
+                  onClick={() => setModalOpen(false)}
+                  aria-label="Close"
+                >
+                  &times;
+                </button>
               </div>
-              <iframe
-                src={pdfUrl}
-                title="PDF Viewer"
-                className="flex-1 w-full h-full"
-              />
+              {/* Modal Content */}
+              {modalMenu === 'instructions' && !pdfUrl && (
+                <div className="flex flex-col space-y-4">
+                  <button
+                    className={"bg-regal-blue hover:bg-[#006399] text-white font-bold py-2 px-4 rounded"}
+                    onClick={() => text('instructionsPrimaryLink') !== "NULL" && setPdfUrl(text('instructionsPrimaryLink'))}
+                    hidden={text('instructionsPrimaryLink') === "NULL"}
+                  >
+                    {text('instructionsPrimaryText')}
+                  </button>
+                  <button
+                    className={"bg-regal-blue hover:bg-[#006399] text-white font-bold py-2 px-4 rounded"}
+                    onClick={() => text('instructionsHighLink') !== "NULL" && setPdfUrl(text('instructionsHighLink'))}
+                    hidden={text('instructionsHighLink') === "NULL"}
+                  >
+                    {text('instructionsHighText')}
+                  </button>
+                </div>
+              )}
+              {modalMenu === 'answers' && !pdfUrl && (
+                <div className="flex flex-col space-y-4">
+                  <button
+                    className={"bg-regal-blue hover:bg-[#006399] text-white font-bold py-2 px-4 rounded"}
+                    onClick={() => text('answersPrimaryLink') !== "NULL" && setPdfUrl(text('answersPrimaryLink'))}
+                    hidden={text('answersPrimaryLink') === "NULL"}
+                  >
+                    {text('answersPrimaryText')}
+                  </button>
+                  <button
+                    className={"bg-regal-blue hover:bg-[#006399] text-white font-bold py-2 px-4 rounded"}
+                    onClick={() => text('answersHighLink') !== "NULL" && setPdfUrl(text('answersHighLink'))}
+                    hidden={text('answersHighLink') === "NULL"}
+                  >
+                    {text('answersHighText')}
+                  </button>
+                </div>
+              )}
+              {pdfUrl && (
+                <>
+                  <iframe
+                    src={pdfUrl}
+                    title="PDF Viewer"
+                    className="flex-1 w-full h-full"
+                  />
+                  {/* Only show Back to Menu button if modalMenu is 'answers' */}
+                  {(modalMenu === 'answers' || modalMenu === 'instructions') && (
+                    <button
+                      className="mt-4 bg-regal-blue hover:bg-[#006399] text-white font-bold py-2 px-4 rounded"
+                      onClick={() => setPdfUrl("")}
+                    >
+                      {text('backButtonText') || "Back to Menu"}
+                    </button>
+                  )}
+                </>
+              )}
             </div>
           </div>
         )}
@@ -162,8 +235,11 @@ function App() {
           {/* Button 1 */}
           <button
           onClick={() => {
-            handleClick(text('instructionsPrimaryLink'));
-            setModalTitle(text('instructionsButtonText'))
+            //handleClick(text('instructionsPrimaryLink'));
+            setModalMenu('instructions');
+            setModalTitle(text('instructionsButtonText'));
+            setPdfUrl("");
+            setModalOpen(true);
           }}
           className="group flex flex-col w-44 h-32 rounded-lg bg-[#99d2f0]/50 backdrop-blur-md 
                     items-center justify-center shadow-[3px_3px_7px_rgba(0,70,100,0.7)] 
@@ -181,8 +257,11 @@ function App() {
           {/* Button 2 */}
           <button
             onClick={() => {
-              handleClick(text('answersPrimaryLink'));
+              //handleClick(text('answersPrimaryLink'));
+              setModalMenu('answers');
               setModalTitle(text('answersButtonText'));
+              setPdfUrl("");
+              setModalOpen(true);
             }}
             className="group flex flex-col w-44 h-32 rounded-lg bg-[#99d2f0]/50 backdrop-blur-md 
                     items-center justify-center shadow-[3px_3px_7px_rgba(0,70,100,0.7)] 
@@ -211,9 +290,9 @@ function App() {
 
       <div className="bg-opacity-100 flex w-full items-center justify-center py-5">
         <div className="flex items-center justify-center md:mr-20"> 
-        {/* md:justify-end  */}
+          {/* md:justify-end  */}
           {/* <span className="fill-white text-1xl text-regal-blue tracking-wider font-bold md:text-1xl lg:text-2xl shape-wave mr-10">Created By</span>
-        <img className="w-3/12 md:w-1/12 h-auto" src={creatorsLogo} alt="Logo" /> */}
+          <img className="w-3/12 md:w-1/12 h-auto" src={creatorsLogo} alt="Logo" /> */}
           {/* <span className="text-1xl text-white tracking-wider font-bold md:text-1xl lg:text-2xl shape-wave mr-40">
             Developed By
           </span>
