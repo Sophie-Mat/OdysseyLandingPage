@@ -163,7 +163,7 @@ function App() {
               onClick={e => e.stopPropagation()}
             >
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-semibold text-black">{modalTitle}</h2>
+                <h2 className="text-xl font-bold text-[#003d5e]">{modalTitle}</h2>
                 <button
                   className="absolute top-3 right-5 text-black text-2xl font-bold"
                   onClick={() => setModalOpen(false)}
@@ -176,14 +176,14 @@ function App() {
               {modalMenu === 'instructions' && !pdfUrl && (
                 <div className="flex flex-col space-y-4">
                   <button
-                    className={"bg-blue-200 hover:bg-blue-300 text-black font-bold py-2 px-4 rounded"}
+                    className={"bg-regal-blue hover:bg-[#006399] text-white font-bold py-2 px-4 rounded"}
                     onClick={() => text('instructionsPrimaryLink') !== "NULL" && setPdfUrl(text('instructionsPrimaryLink'))}
                     hidden={text('instructionsPrimaryLink') === "NULL"}
                   >
                     {text('instructionsPrimaryText')}
                   </button>
                   <button
-                    className={"bg-blue-200 hover:bg-blue-300 text-black font-bold py-2 px-4 rounded"}
+                    className={"bg-regal-blue hover:bg-[#006399] text-white font-bold py-2 px-4 rounded"}
                     onClick={() => text('instructionsHighLink') !== "NULL" && setPdfUrl(text('instructionsHighLink'))}
                     hidden={text('instructionsHighLink') === "NULL"}
                   >
@@ -194,14 +194,14 @@ function App() {
               {modalMenu === 'answers' && !pdfUrl && (
                 <div className="flex flex-col space-y-4">
                   <button
-                    className={"bg-green-200 hover:bg-green-300 text-black font-bold py-2 px-4 rounded"}
+                    className={"bg-regal-blue hover:bg-[#006399] text-white font-bold py-2 px-4 rounded"}
                     onClick={() => text('answersPrimaryLink') !== "NULL" && setPdfUrl(text('answersPrimaryLink'))}
                     hidden={text('answersPrimaryLink') === "NULL"}
                   >
                     {text('answersPrimaryText')}
                   </button>
                   <button
-                    className={"bg-green-200 hover:bg-green-300 text-black font-bold py-2 px-4 rounded"}
+                    className={"bg-regal-blue hover:bg-[#006399] text-white font-bold py-2 px-4 rounded"}
                     onClick={() => text('answersHighLink') !== "NULL" && setPdfUrl(text('answersHighLink'))}
                     hidden={text('answersHighLink') === "NULL"}
                   >
@@ -217,7 +217,7 @@ function App() {
                     className="flex-1 w-full h-full"
                   />
                   <button
-                    className="mt-4 bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded"
+                    className="mt-4 bg-regal-blue hover:bg-[#006399] text-white font-bold py-2 px-4 rounded"
                     onClick={() => setPdfUrl("")}
                   >
                     {text('backButtonText') || "Back to Menu"}
