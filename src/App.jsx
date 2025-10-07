@@ -62,7 +62,7 @@ function App() {
           onClick={languageSelect}
           className="flex items-center justify-center p-2 bg-transparent border-none cursor-pointer focus:outline-none"
         >
-          <img src={language=="en"? ukflag : greekflag} alt="Language Flag" className="w-12 flex-shrink-0" />
+          <img src={language=="en"? greekflag : ukflag} alt="Language Flag" className="w-12 flex-shrink-0" />
         </button>
       </div>
 
