@@ -12,10 +12,11 @@ import { useTranslation } from './TranslationProvder';
 
 function App() {
   const customStyles = {
-    //transform: "rotateX(65deg) rotateY(0deg) rotateZ(35deg)",
+    //transform: "rotateX(65deg) rotateY(0deg) rotateZ(35deg) ",
     //transform: "rotateX(65deg) rotateY(0deg) rotateZ(25deg)",
-    transform: "rotateX(55deg) rotateY(0deg) rotateZ(18deg) scale(1.08)",
+    transform: "rotateX(55deg) rotateY(0deg) rotateZ(18deg) scale(1.08) ",
     boxShadow: "10px 10px 20px rgba(0, 0, 0, 0.5)",
+
   };
 
 
@@ -154,7 +155,7 @@ function App() {
             onClick={() => setModalOpen(false)}
           >
             <div
-              className={`bg-white rounded-lg shadow-lg p-4 flex flex-col relative transition-all duration-300
+              className={`bg-[#99d2f0] rounded-lg shadow-lg p-4 flex flex-col relative transition-all duration-300
                 ${pdfUrl
                   ? "max-w-3xl w-full h-[80vh]" // Large modal for PDF
                   : "max-w-sm w-full h-auto"}   // Small modal for menu
@@ -175,24 +176,16 @@ function App() {
               {modalMenu === 'instructions' && !pdfUrl && (
                 <div className="flex flex-col space-y-4">
                   <button
-                    className={
-                      text('instructionsPrimaryLink') === "NULL"
-                        ? "bg-gray-300 text-gray-500 font-bold py-2 px-4 rounded cursor-not-allowed opacity-60"
-                        : "bg-blue-200 hover:bg-blue-300 text-black font-bold py-2 px-4 rounded"
-                    }
+                    className={"bg-blue-200 hover:bg-blue-300 text-black font-bold py-2 px-4 rounded"}
                     onClick={() => text('instructionsPrimaryLink') !== "NULL" && setPdfUrl(text('instructionsPrimaryLink'))}
-                    disabled={text('instructionsPrimaryLink') === "NULL"}
+                    hidden={text('instructionsPrimaryLink') === "NULL"}
                   >
                     {text('instructionsPrimaryText')}
                   </button>
                   <button
-                    className={
-                      text('instructionsHighLink') === "NULL"
-                        ? "bg-gray-300 text-gray-500 font-bold py-2 px-4 rounded cursor-not-allowed opacity-60"
-                        : "bg-blue-200 hover:bg-blue-300 text-black font-bold py-2 px-4 rounded"
-                    }
+                    className={"bg-blue-200 hover:bg-blue-300 text-black font-bold py-2 px-4 rounded"}
                     onClick={() => text('instructionsHighLink') !== "NULL" && setPdfUrl(text('instructionsHighLink'))}
-                    disabled={text('instructionsHighLink') === "NULL"}
+                    hidden={text('instructionsHighLink') === "NULL"}
                   >
                     {text('instructionsHighText')}
                   </button>
@@ -201,24 +194,16 @@ function App() {
               {modalMenu === 'answers' && !pdfUrl && (
                 <div className="flex flex-col space-y-4">
                   <button
-                    className={
-                      text('answersPrimaryLink') === "NULL"
-                        ? "bg-gray-300 text-gray-500 font-bold py-2 px-4 rounded cursor-not-allowed opacity-60"
-                        : "bg-green-200 hover:bg-green-300 text-black font-bold py-2 px-4 rounded"
-                    }
+                    className={"bg-green-200 hover:bg-green-300 text-black font-bold py-2 px-4 rounded"}
                     onClick={() => text('answersPrimaryLink') !== "NULL" && setPdfUrl(text('answersPrimaryLink'))}
-                    disabled={text('answersPrimaryLink') === "NULL"}
+                    hidden={text('answersPrimaryLink') === "NULL"}
                   >
                     {text('answersPrimaryText')}
                   </button>
                   <button
-                    className={
-                      text('answersHighLink') === "NULL"
-                        ? "bg-gray-300 text-gray-500 font-bold py-2 px-4 rounded cursor-not-allowed opacity-60"
-                        : "bg-green-200 hover:bg-green-300 text-black font-bold py-2 px-4 rounded"
-                    }
+                    className={"bg-green-200 hover:bg-green-300 text-black font-bold py-2 px-4 rounded"}
                     onClick={() => text('answersHighLink') !== "NULL" && setPdfUrl(text('answersHighLink'))}
-                    disabled={text('answersHighLink') === "NULL"}
+                    hidden={text('answersHighLink') === "NULL"}
                   >
                     {text('answersHighText')}
                   </button>
