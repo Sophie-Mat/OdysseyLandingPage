@@ -111,7 +111,7 @@ function App() {
             <button
               // onClick={() => handleClick(text('downloadLink'))}
               onClick={handleDownload}
-              className="bg-orange-400 hover:bg-orange-100 text-white hover:text-regal-blue font-bold py-4 px-6 md:py-6 md:px-12 rounded 
+              className="bg-[#cb6d39] hover:bg-[#d17d50] text-white font-bold py-4 px-6 md:py-6 md:px-12 rounded 
               inline-flex items-center justify-center shadow-[3px_3px_7px_rgba(0,70,100,0.7)] transition-all duration-200 ease-in-out"
             >
               <svg
@@ -128,7 +128,7 @@ function App() {
             {/* Installation Guide */}
             {text('instalationGuide') !== "NULL" && (
               <button
-                className="mt-4 bg-orange-400 hover:bg-orange-100 text-white hover:text-regal-blue font-semibold py-2 px-4 rounded shadow transition-all duration-200 outline-none border-none"
+                className="mt-2  hover:underline text-white italic font-semibold py-2 px-4 rounded shadow transition-all duration-200 outline-none border-none"
                 onClick={() => {
                   setModalMenu(null);
                   setModalTitle(text('installationText'));
@@ -216,12 +216,15 @@ function App() {
                     title="PDF Viewer"
                     className="flex-1 w-full h-full"
                   />
-                  <button
-                    className="mt-4 bg-regal-blue hover:bg-[#006399] text-white font-bold py-2 px-4 rounded"
-                    onClick={() => setPdfUrl("")}
-                  >
-                    {text('backButtonText') || "Back to Menu"}
-                  </button>
+                  {/* Only show Back to Menu button if modalMenu is 'answers' */}
+                  {(modalMenu === 'answers' || modalMenu === 'instructions') && (
+                    <button
+                      className="mt-4 bg-regal-blue hover:bg-[#006399] text-white font-bold py-2 px-4 rounded"
+                      onClick={() => setPdfUrl("")}
+                    >
+                      {text('backButtonText') || "Back to Menu"}
+                    </button>
+                  )}
                 </>
               )}
             </div>
