@@ -17,7 +17,7 @@ export default {
         wave: 'polygon(0 0, 0 10%, 70% 30%, 100% 0, 0 0)',
       },
       fontFamily: {
-        'luckiest-guy': ['Luckiest Guy', 'cursive'],
+        'playpen-sans': ['Playpen Sans', 'cursive'],
       },
     },
   },
