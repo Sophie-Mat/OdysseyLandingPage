@@ -1,6 +1,6 @@
 const Header = ({ language }) => (
   <div className="flex font-playpen-sans mt-4 mb-12">
-    <p className="text-3xl text-white tracking-wider font-bold md:text-6xl lg:text-8xl flex space-x-1 [text-shadow:_0_5px_0_rgb(0_0_0_/_40%)]">
+    <p className="text-3xl text-white font-bold md:text-6xl lg:text-8xl flex space-x-1 [text-shadow:_0_5px_0_rgb(0_0_0_/_40%)]">
       {language === "el" ? (
         <>
           <span className="relative top-8">Π</span>
