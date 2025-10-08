@@ -30,24 +30,33 @@ function App() {
 
 
   return (
-    <div className="w-screen md:h-screen bg-regal-blue flex flex-col items-center justify-start relative overfloww-y-auto overflow-x-hidden">
+    <div className="w-screen px-60 md:h-screen bg-regal-blue flex flex-col items-center justify-start relative overfloww-y-auto overflow-x-hidden">
       <LanguageSwitcher language={language} setLanguage={setLanguage} text={text} />
       <Header language={language}/>
       <div className="w-full flex-1 mt-10 md:mt-20 mb-8 px-2 md:px-20 md:mb-0">
-        <div className="flex flex-col md:flex-row items-center md:space-x-8 space-y-6 md:space-y-0">
-          <div className="flex flex-col md:w-3/5 w-full items-center md:items-start">
-            <p className="text-white font-semibold text-lg md:text-xl text-justify leading-relaxed md:leading-normal">
-              {text('gameDescription')}
+        <div className="flex flex-col md:flex-row items-start justify-center w-full">
+          {/* Left column: summary and download */}
+          <div className="flex flex-col w-full md:w-1/2 items-start">
+            <p className="mt-20 text-white font-semibold text-lg md:text-xl text-justify leading-relaxed md:leading-normal mb-6">
+              {text('gameSummary')}
             </p>
+            <DownloadSection
+              text={text}
+              handleDownload={handleDownload}
+              setModalMenu={setModalMenu}
+              setModalTitle={setModalTitle}
+              setPdfUrl={setPdfUrl}
+              setModalOpen={setModalOpen}
+            />
+            {/* Game description below summary and download
+            <p className="text-white font-semibold text-lg md:text-xl text-justify leading-relaxed md:leading-normal mt-8">
+              {text('gameDescription')}
+            </p> */}
           </div>
-          <DownloadSection
-            text={text}
-            handleDownload={handleDownload}
-            setModalMenu={setModalMenu}
-            setModalTitle={setModalTitle}
-            setPdfUrl={setPdfUrl}
-            setModalOpen={setModalOpen}
-          />
+          {/* Right column: map image */}
+          <div className="flex w-full md:w-1/2 items-center justify-end">
+            <MapImage />
+          </div>
         </div>
       </div>
       <div className="flex flex-col md:flex-row w-full bg-regal-blue md:px-20 md:right-0 items-center justify-center">
@@ -68,7 +77,6 @@ function App() {
           setPdfUrl={setPdfUrl}
           setModalOpen={setModalOpen}
         />
-        <MapImage />
       </div>
       <Footer />
     </div>
