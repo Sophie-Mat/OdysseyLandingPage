@@ -7,9 +7,9 @@ const customStyles = {
 };
 
 const MapImage = () => (
-  <div className="flex w-full h-full px-14 items-center justify-center">
+  <div className="flex w-full h-full items-center justify-center">
     <img
-      className="w-full max-w-xl object-fit h-auto"
+      className="w-4/5 max-w-xl object-fit h-auto"
       style={customStyles}
       src={backgroundLogo}
       alt="Logo"

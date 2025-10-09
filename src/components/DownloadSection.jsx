@@ -1,5 +1,5 @@
 const DownloadSection = ({ text, handleDownload, setModalMenu, setModalTitle, setPdfUrl, setModalOpen }) => (
-  <div className="flex flex-row w-full items-center justify-center space-x-6">
+  <div className="flex flex-col sm:flex-row w-full items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-6 py-6">
     <button
       onClick={handleDownload}
       className="bg-[#cb6d39] hover:bg-[#d17d50] text-white font-bold py-6 px-8 rounded-full
@@ -12,7 +12,7 @@ const DownloadSection = ({ text, handleDownload, setModalMenu, setModalTitle, se
       >
         <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
       </svg>
-      <span className="font-bold text-base ml-2">
+      <span className="font-bold text-xl ml-2">
         {text('downloadButtonText')}
       </span>
     </button>

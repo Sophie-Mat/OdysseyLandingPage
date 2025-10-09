@@ -4,11 +4,12 @@ import { useState } from "react";
 import { useTranslation } from './TranslationProvder';
 import LanguageSwitcher from "./components/LanguageSwitcher";
 import Header from "./components/Header";
-import DownloadSection from "./components/DownloadSection";
+import MainSection from "./components/MainSection";
 import InstructionsAnswersButtons from "./components/InstructionsAnswersButtons";
-import MapImage from "./components/MapImage";
 import Footer from "./components/Footer";
 import InstructionsAnswersModal from "./components/InstructionsAnswersModal";
+import OptionsSection from "./components/OptionsSection";
+import GameDescriptionSection from "./components/GameDescriptionSection";
 
 function App() {
 
@@ -30,50 +31,30 @@ function App() {
 
 
   return (
-    <div className="w-screen px-4 md:px-20 lg:px-60 bg-regal-blue flex flex-col items-center justify-start relative overflow-y-auto overflow-x-hidden">
+    <div className="min-h-screen w-full bg-regal-blue flex flex-col items-center justify-start relative overflow-y-auto overflow-x-hidden">
       <LanguageSwitcher language={language} setLanguage={setLanguage} text={text} />
       <Header language={language}/>
-      <div className="w-full flex-1 mt-10 md:mt-20 mb-8 px-2 md:px-8 lg:px-20 md:mb-0">
-        <div className="flex flex-col lg:flex-row items-start justify-center w-full gap-8">
-          {/* Left column: summary and download */}
-          <div className="flex flex-col w-full lg:w-1/2 items-start">
-            <p className="mt-8 lg:mt-20 text-white font-semibold text-base lg:text-xl text-justify leading-relaxed lg:leading-normal mb-6">
-              {text('gameSummary')}
-            </p>
-            <DownloadSection
-              text={text}
-              handleDownload={handleDownload}
-              setModalMenu={setModalMenu}
-              setModalTitle={setModalTitle}
-              setPdfUrl={setPdfUrl}
-              setModalOpen={setModalOpen}
-            />
-          </div>
-          {/* Right column: map image */}
-          <div className="flex w-full lg:w-1/2 items-center justify-center lg:justify-end mt-8 lg:mt-0">
-            <MapImage />
-          </div>
-        </div>
-      </div>
-      <div className="flex flex-col md:flex-row w-full bg-regal-blue md:px-20 md:right-0 items-center justify-center">
-        <InstructionsAnswersModal
-          modalOpen={modalOpen}
-          modalTitle={modalTitle}
-          setModalTitle={setModalTitle}
-          modalMenu={modalMenu}
-          pdfUrl={pdfUrl}
-          setModalOpen={setModalOpen}
-          setPdfUrl={setPdfUrl}
-          text={text}
-        />
-        <InstructionsAnswersButtons
-          text={text}
-          setModalMenu={setModalMenu}
-          setModalTitle={setModalTitle}
-          setPdfUrl={setPdfUrl}
-          setModalOpen={setModalOpen}
-        />
-      </div>
+      <MainSection
+        text={text}
+        handleDownload={handleDownload}
+        setModalMenu={setModalMenu}
+        setModalTitle={setModalTitle}
+        setPdfUrl={setPdfUrl}
+        setModalOpen={setModalOpen}
+      />
+      {/* New Game Description Section */}
+      <GameDescriptionSection text={text} />
+      <OptionsSection
+        modalOpen={modalOpen}
+        modalTitle={modalTitle}
+        setModalTitle={setModalTitle}
+        modalMenu={modalMenu}
+        pdfUrl={pdfUrl}
+        setModalOpen={setModalOpen}
+        setPdfUrl={setPdfUrl}
+        text={text}
+        setModalMenu={setModalMenu}
+      />
       <Footer />
     </div>
   );

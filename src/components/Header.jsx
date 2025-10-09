@@ -1,6 +1,6 @@
 const Header = ({ language }) => (
-  <div className="flex font-playpen-sans mt-4 mb-12">
-    <p className="text-3xl text-white font-bold md:text-6xl lg:text-8xl flex space-x-1 [text-shadow:_0_5px_0_rgb(0_0_0_/_40%)]">
+  <div className="flex font-playpen-sans my-4">
+    <p className="text-xl pb-10 sm:text-4xl md:text-6xl lg:text-6xl xl:text-8xl text-white tracking-wider font-bold flex space-x-1 [text-shadow:_0_5px_0_rgb(0_0_0_/_40%)]">
       {language === "el" ? (
         <>
           <span className="relative top-8">Π</span>
@@ -11,7 +11,7 @@ const Header = ({ language }) => (
           <span className="relative top-2">υ</span>
           <span className="relative top-1">μ</span>
           <span className="relative top-0">ε</span>
-          <span className="relative top-0 p-4"> </span>
+          <span className="relative top-0 px-4"> </span>
           <span className="relative top-1">Ο</span>
           <span className="relative top-4">δ</span>
           <span className="relative top-5">ύ</span>
@@ -28,7 +28,7 @@ const Header = ({ language }) => (
           <span className="relative top-6">e</span>
           <span className="relative top-4">t'</span>
           <span className="relative top-3">s</span>
-          <span className="relative top-0 p-4" />
+          <span className="relative top-0 px-4" />
           <span className="relative top-2">p</span>
           <span className="relative top-1">l</span>
           <span className="relative top-3">a</span>
